@@ -1,0 +1,51 @@
+@use '../Layout/Layout.scss' as layout;
+@use '../../styles/global.scss' as *;
+
+.header {
+  &__body {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 0;
+
+    @include layout.breakpoint(sm) {
+      padding: 18px 0;
+    }
+  }
+
+  &__logo {
+    text-transform: uppercase;
+    border-radius: 50%;
+    background-color: $color-purple;
+    color: $color-white;
+    font-weight: 900;
+    padding: 20px 25px;
+
+    @include layout.breakpoint(sm) {
+      font-size: $font-size-small;
+      padding: 15px 22px;
+    }
+  }
+
+  &__navbar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    @include layout.breakpoint(sm) {
+      display: none;
+    }
+  }
+
+  &__navbar > :not(:last-child) {
+    margin-right: 20px;
+  }
+
+  &__burger {
+    display: none;
+
+    @include layout.breakpoint(sm) {
+      display: block;
+    }
+  }
+}
