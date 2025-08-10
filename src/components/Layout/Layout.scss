@@ -118,3 +118,9 @@ body {
     transform: scaleX(0);
   }
 }
+
+.text-danger {
+  color: $color-red;
+  text-align: center;
+  margin: 20px;
+}
