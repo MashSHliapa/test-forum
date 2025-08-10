@@ -10,7 +10,10 @@ export function Header() {
           <div className="header__logo">test-forum</div>
           <nav className="header__navbar">
             <NavLink to="/" className="header__item link">
-              Избранное
+              Users
+            </NavLink>
+            <NavLink to="/" className="header__item link">
+              Favorite
             </NavLink>
           </nav>
           <div className="header__burger">

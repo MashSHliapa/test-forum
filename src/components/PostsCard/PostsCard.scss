@@ -1,0 +1,54 @@
+@use '../Layout/Layout.scss' as layout;
+@use '../../styles/global.scss' as *;
+
+.posts-card {
+  display: flex;
+  align-items: stretch;
+
+  &__body {
+    background-color: $color-white;
+    border: 1px solid $color-separator;
+    border-radius: $border-radius-common;
+    max-width: 350px;
+    padding: 20px;
+    transition: $transition-default;
+
+    @include layout.breakpoint(sm) {
+      max-width: 280px;
+      padding: 20px 15px;
+    }
+  }
+
+  &__body:hover {
+    box-shadow: 0 6px 16px $box-shadow-color;
+    transition: $transition-default;
+
+    @include layout.breakpoint(md) {
+      box-shadow: none;
+    }
+  }
+
+  &__body > :not(:last-child) {
+    margin-bottom: 20px;
+
+    @include layout.breakpoint(sm) {
+      margin-bottom: 10px;
+    }
+  }
+
+  &__title {
+    font-size: $font-size-base;
+
+    @include layout.breakpoint(sm) {
+      font-size: $font-size-default;
+    }
+  }
+
+  &__description {
+    font-weight: $font-weight-regular;
+
+    @include layout.breakpoint(sm) {
+      font-size: $font-size-small;
+    }
+  }
+}

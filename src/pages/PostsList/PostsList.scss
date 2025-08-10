@@ -1,0 +1,37 @@
+@use '../../components/Layout/Layout.scss' as layout;
+@use '../../styles/global.scss' as *;
+
+.posts-list {
+  &__body {
+    padding: 15px 0 40px;
+  }
+
+  &__title {
+    font-size: $font-size-large;
+    font-weight: $font-weight-large;
+    text-align: center;
+    margin-bottom: 34px;
+
+    @include layout.breakpoint(sm) {
+      font-size: $font-size-medium;
+      margin-bottom: 20px;
+    }
+  }
+
+  &__list {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    column-gap: 32px;
+    row-gap: 40px;
+
+    @include layout.breakpoint(md) {
+      column-gap: 20px;
+      row-gap: 30px;
+    }
+
+    @include layout.breakpoint(sm) {
+      gap: 20px;
+    }
+  }
+}
