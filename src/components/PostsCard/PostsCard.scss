@@ -2,29 +2,11 @@
 @use '../../styles/global.scss' as *;
 
 .posts-card {
-  display: flex;
-  align-items: stretch;
-
   &__body {
-    background-color: $color-white;
-    border: 1px solid $color-separator;
-    border-radius: $border-radius-common;
     max-width: 350px;
-    padding: 20px;
-    transition: $transition-default;
 
     @include layout.breakpoint(sm) {
       max-width: 280px;
-      padding: 20px 15px;
-    }
-  }
-
-  &__body:hover {
-    box-shadow: 0 6px 16px $box-shadow-color;
-    transition: $transition-default;
-
-    @include layout.breakpoint(md) {
-      box-shadow: none;
     }
   }
 
@@ -38,6 +20,7 @@
 
   &__title {
     font-size: $font-size-base;
+    color: $color-purple;
 
     @include layout.breakpoint(sm) {
       font-size: $font-size-default;

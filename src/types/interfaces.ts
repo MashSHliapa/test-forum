@@ -10,3 +10,20 @@ export interface IDataPostsListResponse {
   error: null | string;
   data: IPostsCard[];
 }
+
+export interface IUsersCard {
+  userId: number;
+  id: number;
+  name: string;
+  username: string;
+  website: string;
+  company: {
+    name: string;
+  };
+}
+
+export interface IDataUsersResponse {
+  loading: boolean;
+  error: null | string;
+  data: IUsersCard[];
+}

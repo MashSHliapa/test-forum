@@ -10,9 +10,12 @@ export function Header() {
           <div className="header__logo">test-forum</div>
           <nav className="header__navbar">
             <NavLink to="/" className="header__item link">
+              Posts
+            </NavLink>
+            <NavLink to="/users" className="header__item link">
               Users
             </NavLink>
-            <NavLink to="/" className="header__item link">
+            <NavLink to="/favorite" className="header__item link">
               Favorite
             </NavLink>
           </nav>

@@ -1,0 +1,22 @@
+@use '../Layout/Layout.scss' as layout;
+@use '../../styles/global.scss' as *;
+
+.users-card {
+  &__body {
+    flex: 0 0 275px;
+
+    @include layout.breakpoint(sm) {
+      flex: 0 0 260px;
+    }
+  }
+
+  &__name {
+    color: $color-purple;
+  }
+
+  &__website span,
+  &__company span {
+    font-size: $font-size-small;
+    font-weight: $font-weight-regular;
+  }
+}

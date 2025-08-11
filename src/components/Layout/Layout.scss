@@ -119,8 +119,39 @@ body {
   }
 }
 
+.loading,
+.text-danger {
+  text-align: center;
+}
+
 .text-danger {
   color: $color-red;
-  text-align: center;
   margin: 20px;
+}
+
+//для карточек на станицах постов и пользователей
+.card {
+  display: flex;
+  align-items: stretch;
+}
+
+.card-body {
+  background-color: $color-white;
+  border: 1px solid $color-separator;
+  border-radius: $border-radius-common;
+  padding: 20px;
+  transition: $transition-default;
+
+  @include breakpoint(sm) {
+    padding: 20px 15px;
+  }
+}
+
+.card-body-hover:hover {
+  box-shadow: 0 6px 16px $box-shadow-color;
+  transition: $transition-default;
+
+  @include breakpoint(md) {
+    box-shadow: none;
+  }
 }

@@ -25,11 +25,11 @@ export function PostsList() {
   const postsList = posts.map((item: IPostsCard) => <PostsCard key={item.id} post={item} />);
 
   return (
-    <div className="posts-list">
-      <div className="posts-list__container _container">
-        <div className="posts-list__body">
-          <div className="posts-list__title">Posts</div>
-          <div className="posts-list__list">{postsList}</div>
+    <div className="catalog">
+      <div className="catalog__container _container">
+        <div className="catalog__body">
+          <div className="catalog__title">Posts</div>
+          <div className="catalog__list">{postsList}</div>
         </div>
       </div>
     </div>
