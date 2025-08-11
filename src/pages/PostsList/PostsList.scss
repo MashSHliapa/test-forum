@@ -2,22 +2,6 @@
 @use '../../styles/global.scss' as *;
 
 .catalog {
-  &__body {
-    padding: 15px 0 40px;
-  }
-
-  &__title {
-    font-size: $font-size-large;
-    font-weight: $font-weight-large;
-    text-align: center;
-    margin-bottom: 34px;
-
-    @include layout.breakpoint(sm) {
-      font-size: $font-size-medium;
-      margin-bottom: 20px;
-    }
-  }
-
   &__list {
     display: flex;
     justify-content: center;

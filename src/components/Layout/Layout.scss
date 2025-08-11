@@ -129,6 +129,26 @@ body {
   margin: 20px;
 }
 
+.title {
+  font-size: $font-size-large;
+  font-weight: $font-weight-large;
+  text-align: center;
+  margin-bottom: 34px;
+
+  @include breakpoint(sm) {
+    font-size: $font-size-medium;
+    margin-bottom: 20px;
+  }
+}
+
+.body {
+  padding: 15px 0 40px;
+}
+
+.label {
+  $font-weight-regular: 400;
+}
+
 //для карточек на станицах постов и пользователей
 .card {
   display: flex;

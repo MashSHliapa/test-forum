@@ -17,6 +17,7 @@ export interface IUsersCard {
   name: string;
   username: string;
   website: string;
+  email?: string;
   company: {
     name: string;
   };

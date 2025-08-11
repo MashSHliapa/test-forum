@@ -27,8 +27,8 @@ export function PostsList() {
   return (
     <div className="catalog">
       <div className="catalog__container _container">
-        <div className="catalog__body">
-          <div className="catalog__title">Posts</div>
+        <div className="catalog__body body">
+          <div className="catalog__title title">Posts</div>
           <div className="catalog__list">{postsList}</div>
         </div>
       </div>

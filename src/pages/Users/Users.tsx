@@ -26,8 +26,8 @@ export function Users() {
   return (
     <div className="catalog">
       <div className="catalog__container _container">
-        <div className="catalog__body">
-          <h1 className="catalog__title">Users</h1>
+        <div className="catalog__body body">
+          <h1 className="catalog__title title">Users</h1>
           <div className="catalog__list">{usersList}</div>
         </div>
       </div>
