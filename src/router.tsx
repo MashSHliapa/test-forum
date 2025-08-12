@@ -3,6 +3,7 @@ import { Layout } from './components/Layout/Layout';
 import { PostsList } from './pages/PostsList/PostsList';
 import { Users } from './pages/Users/Users';
 import { CardItem } from './pages/CardItem/CardItem';
+import { Favorites } from './pages/Favorites/Favorites';
 
 export const router = createBrowserRouter([
   {
@@ -19,6 +20,10 @@ export const router = createBrowserRouter([
       {
         path: '/users',
         element: <Users />,
+      },
+      {
+        path: '/favorites',
+        element: <Favorites />,
       },
     ],
   },

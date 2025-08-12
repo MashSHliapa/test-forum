@@ -3,22 +3,20 @@ import { useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchPostsListRequest } from '../../redux/postsListSlice';
 import { fetchUsersRequest } from '../../redux/usersSlice';
+import { addToFavorites, removeFromFavorites } from '../../redux/favoritesSlice';
 import { LikeIcon } from './icons/LikeIcon';
 import { DisLikeIcon } from './icons/DislikeIcon';
 import { FavoritesIcon } from './icons/FavoritesIcon';
 import type { AppDispatch, RootState } from '../../redux/store';
+import type { IUsersCard } from '../../types/interfaces';
 import './CardItem.scss';
 
 export function CardItem() {
   const [comment, setComment] = useState('');
   const { data: users, loading: usersLoading, error: usersError } = useSelector((state: RootState) => state.users);
   const { data: posts, loading: postsLoading, error: postsError } = useSelector((state: RootState) => state.postsList);
+  const { data: favorite } = useSelector((state: RootState) => state.favorites);
   const { id } = useParams();
-  const [favorites, setFavorites] = useState(false);
-
-  function handleToggleFavorites() {
-    setFavorites((prev) => !prev);
-  }
 
   const dispatch = useDispatch<AppDispatch>();
 
@@ -42,6 +40,21 @@ export function CardItem() {
   const post = posts ? posts.find((item) => item.id === Number(id)) : null;
   const user = users ? users.find((item) => item.id === post?.userId) : null;
 
+  if (!post || !user) {
+    return <div>Post not found</div>;
+  }
+
+  ///// favorites
+  const isFavorite = favorite.some((item: IUsersCard) => item.id === post.id);
+
+  function handleToggleFavorites() {
+    if (isFavorite) {
+      dispatch(removeFromFavorites(post));
+    } else {
+      dispatch(addToFavorites(post));
+    }
+  }
+
   function handleInputForm(event: React.ChangeEvent<HTMLTextAreaElement>) {
     setComment(event.target.value);
   }
@@ -49,10 +62,6 @@ export function CardItem() {
   function handleSubmitForm(event: ChangeEvent<HTMLFormElement>) {
     event.preventDefault();
     setComment('');
-  }
-
-  if (!post || !user) {
-    return <div>Post not found</div>;
   }
 
   return (
@@ -93,7 +102,7 @@ export function CardItem() {
                   <DisLikeIcon />
                 </div>
                 <div className="actions__icon" onClick={handleToggleFavorites}>
-                  <FavoritesIcon fill={favorites ? 'red' : 'none'} />
+                  <FavoritesIcon fill={isFavorite ? 'red' : 'none'} />
                 </div>
               </div>
               <div className="actions__comment">

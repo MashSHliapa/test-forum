@@ -15,8 +15,8 @@ export function Header() {
             <NavLink to="/users" className="header__item link">
               Users
             </NavLink>
-            <NavLink to="/favorite" className="header__item link">
-              Favorite
+            <NavLink to="/favorites" className="header__item link">
+              Favorites
             </NavLink>
           </nav>
           <div className="header__burger">
