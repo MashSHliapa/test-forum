@@ -4,9 +4,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { fetchPostsListRequest } from '../../redux/postsListSlice';
 import { fetchUsersRequest } from '../../redux/usersSlice';
 import { addToFavorites, removeFromFavorites } from '../../redux/favoritesSlice';
-import { LikeIcon } from './icons/LikeIcon';
-import { DisLikeIcon } from './icons/DislikeIcon';
-import { FavoritesIcon } from './icons/FavoritesIcon';
+import { LikeDislikeSwitcher } from '../../components/LikeDislikeSwitcher/LikeDislikeSwitcher';
+import { FavoritesIcon } from '../../components/LikeDislikeSwitcher/icons/FavoritesIcon';
 import type { AppDispatch, RootState } from '../../redux/store';
 import type { IUsersCard } from '../../types/interfaces';
 import './CardItem.scss';
@@ -95,12 +94,7 @@ export function CardItem() {
             </div>
             <div className="card-item__actions actions">
               <div className="actions__icons">
-                <div className="actions__icon">
-                  <LikeIcon />
-                </div>
-                <div className="actions__icon">
-                  <DisLikeIcon />
-                </div>
+                {id && <LikeDislikeSwitcher id={id} />}
                 <div className="actions__icon" onClick={handleToggleFavorites}>
                   <FavoritesIcon fill={isFavorite ? 'red' : 'none'} />
                 </div>

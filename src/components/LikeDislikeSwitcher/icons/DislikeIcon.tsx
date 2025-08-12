@@ -1,4 +1,4 @@
-export function DisLikeIcon(props: React.SVGProps<SVGSVGElement>) {
+export function DislikeIcon(props: React.SVGProps<SVGSVGElement>) {
   return (
     <svg
       width="24"
