@@ -51,26 +51,7 @@
     }
   }
 
-  &__textarea {
-    outline: none;
-    border: $box-shadow-color 1px solid;
-    border-radius: 4px;
-    max-width: 600px;
-    min-width: 100%;
-    min-height: 100px;
-    max-height: 200px;
-    padding: 10px;
-    font-family: inherit;
-  }
-
   &__button {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color: $color-purple;
-    border-radius: 10px;
-    color: $color-white;
     padding: 15px;
-    cursor: pointer;
   }
 }

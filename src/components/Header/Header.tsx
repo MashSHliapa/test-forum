@@ -18,6 +18,9 @@ export function Header() {
             <NavLink to="/favorites" className="header__item link">
               Favorites
             </NavLink>
+            <NavLink to="/create-post" className="header__item link">
+              New Post
+            </NavLink>
           </nav>
           <div className="header__burger">
             <img src={burger} alt="burger" />

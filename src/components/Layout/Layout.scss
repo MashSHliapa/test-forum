@@ -149,6 +149,35 @@ body {
   $font-weight-regular: 400;
 }
 
+.button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 56px;
+  margin-top: 20px;
+  background-color: $color-purple;
+  color: $color-white;
+  border-radius: 10px;
+  font-size: inherit;
+  cursor: pointer;
+
+  @include breakpoint(xs) {
+    font-size: $font-size-small;
+  }
+}
+
+.textarea {
+  outline: none;
+  border: $box-shadow-color 1px solid;
+  border-radius: 4px;
+  max-width: 100%;
+  min-width: 100%;
+  min-height: 100px;
+  max-height: 200px;
+  padding: 10px;
+  font-family: inherit;
+}
+
 //для карточек на станицах постов и пользователей
 .card {
   display: flex;

@@ -108,7 +108,7 @@ export function SignIn() {
               />
             </div>
 
-            <button type="submit" className="sign-in__button">
+            <button type="submit" className="sign-in__button button">
               Sign in
             </button>
           </form>

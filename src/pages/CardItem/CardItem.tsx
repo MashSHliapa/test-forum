@@ -102,12 +102,12 @@ export function CardItem() {
               <div className="actions__comment">
                 <form action="#" className="actions__form" onSubmit={handleSubmitForm}>
                   <textarea
-                    className="actions__textarea"
+                    className="actions__textarea textarea"
                     placeholder="Your comment"
                     value={comment}
                     onChange={handleInputForm}
                   />
-                  <button type="submit" className="actions__button">
+                  <button type="submit" className="actions__button button">
                     Send comment
                   </button>
                 </form>

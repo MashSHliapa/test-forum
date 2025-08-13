@@ -7,6 +7,7 @@ import { Favorites } from './pages/Favorites/Favorites';
 import { SignIn } from './pages/SignIn/SignIn';
 import { ProtectedRoute } from './components/ProtectedRoute/ProtectedRoute';
 import { LayoutSignIn } from './components/LayoutSignIn/LayoutSignIn';
+import { CreatePost } from './pages/CreatePost/CreatePost';
 
 export const router = createBrowserRouter([
   {
@@ -41,6 +42,14 @@ export const router = createBrowserRouter([
         element: (
           <ProtectedRoute>
             <Favorites />
+          </ProtectedRoute>
+        ),
+      },
+      {
+        path: '/create-post',
+        element: (
+          <ProtectedRoute>
+            <CreatePost />
           </ProtectedRoute>
         ),
       },

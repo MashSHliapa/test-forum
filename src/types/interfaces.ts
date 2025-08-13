@@ -42,3 +42,9 @@ export interface FormDataType {
 export interface IProtectedRouteProps {
   children: JSX.Element;
 }
+
+export interface ICreatePostResponse {
+  data: IPostsCard[];
+  loading: boolean;
+  error: string | null;
+}
