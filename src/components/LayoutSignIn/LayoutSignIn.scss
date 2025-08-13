@@ -1,0 +1,21 @@
+@use '../../components/Layout/Layout.scss' as layout;
+
+.layout-auth {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+
+  &__outlet {
+    flex: 1 1 auto;
+  }
+
+  &__copyright {
+    text-align: center;
+    padding-bottom: 40px;
+  }
+}
+
+.layout-auth .header__navbar,
+.layout-auth .header__burger {
+  display: none;
+}

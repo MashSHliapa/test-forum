@@ -4,6 +4,9 @@ import { PostsList } from './pages/PostsList/PostsList';
 import { Users } from './pages/Users/Users';
 import { CardItem } from './pages/CardItem/CardItem';
 import { Favorites } from './pages/Favorites/Favorites';
+import { SignIn } from './pages/SignIn/SignIn';
+import { ProtectedRoute } from './components/ProtectedRoute/ProtectedRoute';
+import { LayoutSignIn } from './components/LayoutSignIn/LayoutSignIn';
 
 export const router = createBrowserRouter([
   {
@@ -11,19 +14,44 @@ export const router = createBrowserRouter([
     children: [
       {
         path: '/',
-        element: <PostsList />,
+        element: (
+          <ProtectedRoute>
+            <PostsList />
+          </ProtectedRoute>
+        ),
       },
       {
         path: '/selected/:id',
-        element: <CardItem />,
+        element: (
+          <ProtectedRoute>
+            <CardItem />
+          </ProtectedRoute>
+        ),
       },
       {
         path: '/users',
-        element: <Users />,
+        element: (
+          <ProtectedRoute>
+            <Users />
+          </ProtectedRoute>
+        ),
       },
       {
         path: '/favorites',
-        element: <Favorites />,
+        element: (
+          <ProtectedRoute>
+            <Favorites />
+          </ProtectedRoute>
+        ),
+      },
+    ],
+  },
+  {
+    element: <LayoutSignIn />,
+    children: [
+      {
+        path: '/sign-in',
+        element: <SignIn />,
       },
     ],
   },

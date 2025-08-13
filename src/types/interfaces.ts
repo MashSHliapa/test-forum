@@ -1,3 +1,5 @@
+import type { JSX } from 'react';
+
 export interface IPostsCard {
   userId: number;
   id: number;
@@ -27,4 +29,16 @@ export interface IDataUsersResponse {
   loading: boolean;
   error: null | string;
   data: IUsersCard[];
+}
+
+export interface FormDataType {
+  name?: string;
+  username?: string;
+  email?: string;
+  website?: string;
+  company?: string;
+}
+
+export interface IProtectedRouteProps {
+  children: JSX.Element;
 }
