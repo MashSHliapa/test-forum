@@ -1,4 +1,5 @@
 import { NavLink } from 'react-router-dom';
+import { Filter } from '../Filter/Filter';
 import burger from '../../assets/icons/burger.svg';
 import './Header.scss';
 
@@ -9,6 +10,9 @@ export function Header() {
         <div className="header__body">
           <div className="header__logo">test-forum</div>
           <nav className="header__navbar">
+            <div className="header__filter">
+              <Filter />
+            </div>
             <NavLink to="/" className="header__item link">
               Posts
             </NavLink>

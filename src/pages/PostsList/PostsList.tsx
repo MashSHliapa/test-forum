@@ -4,7 +4,6 @@ import { fetchPostsListRequest } from '../../redux/postsListSlice';
 import { PostsCard } from '../../components/PostsCard/PostsCard';
 import type { AppDispatch, RootState } from '../../redux/store';
 import type { IPostsCard } from '../../types/interfaces';
-import './PostsList.scss';
 
 export function PostsList() {
   const { data: posts, loading, error } = useSelector((state: RootState) => state.postsList);

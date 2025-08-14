@@ -9,6 +9,7 @@ import { ProtectedRoute } from './components/ProtectedRoute/ProtectedRoute';
 import { LayoutSignIn } from './components/LayoutSignIn/LayoutSignIn';
 import { CreatePost } from './pages/CreatePost/CreatePost';
 import { PersonalAccount } from './pages/PersonalAccount/PersonalAccount';
+import { FilterResults } from './pages/FilterResults/FilterResults';
 
 export const router = createBrowserRouter([
   {
@@ -59,6 +60,14 @@ export const router = createBrowserRouter([
         element: (
           <ProtectedRoute>
             <PersonalAccount />
+          </ProtectedRoute>
+        ),
+      },
+      {
+        path: '/filter-results/:request',
+        element: (
+          <ProtectedRoute>
+            <FilterResults />
           </ProtectedRoute>
         ),
       },

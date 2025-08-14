@@ -1,0 +1,22 @@
+@use '../Layout/Layout.scss' as layout;
+@use '../../styles/global.scss' as *;
+
+.filter {
+  &__form {
+    display: flex;
+    gap: 5px;
+    height: 40px;
+  }
+
+  &__input {
+    outline: none;
+    background-color: $color-white;
+    border-radius: 4px;
+    width: 270px;
+    padding: 0px 10px;
+
+    @include layout.breakpoint(md) {
+      width: 250px;
+    }
+  }
+}

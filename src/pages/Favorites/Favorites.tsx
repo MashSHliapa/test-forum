@@ -13,7 +13,13 @@ export function Favorites() {
       <div className="catalog__container _container">
         <div className="catalog__body body">
           <div className="catalog__title title">Favorites</div>
-          <div className="catalog__list">{favoritesList}</div>
+          <div className="catalog__list">
+            {favoritesList.length > 0 ? (
+              favoritesList
+            ) : (
+              <div className="catalog__text">You don't have any posts added to your favorites yet</div>
+            )}
+          </div>
         </div>
       </div>
     </div>
