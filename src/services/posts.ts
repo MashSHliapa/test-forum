@@ -25,3 +25,8 @@ export const requestCreatePost = async (postData: { userId: number; title: strin
   const { data } = await client.post(postsListEndpoint, postData);
   return data;
 };
+
+export const requestDeletePost = async (id: string) => {
+  const { data } = await client.delete(postsListEndpoint + '/' + id);
+  return data;
+};

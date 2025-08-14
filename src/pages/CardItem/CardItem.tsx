@@ -1,11 +1,13 @@
 import React, { useEffect, useState, type ChangeEvent } from 'react';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchCardItemRequest } from '../../redux/cardItemSlice';
 import { fetchCommentsRequest } from '../../redux/commentsSlice';
+import { fetchDeletePostRequest } from '../../redux/postsListSlice';
 import { addToFavorites, removeFromFavorites } from '../../redux/favoritesSlice';
 import { LikeDislikeSwitcher } from '../../components/LikeDislikeSwitcher/LikeDislikeSwitcher';
-import { FavoritesIcon } from '../../components/LikeDislikeSwitcher/icons/FavoritesIcon';
+import { FavoritesIcon } from './icons/FavoritesIcon';
+import { DeletePost } from './icons/DeletePost';
 import type { AppDispatch, RootState } from '../../redux/store';
 import type { IUsersCard } from '../../types/interfaces';
 import './CardItem.scss';
@@ -21,9 +23,11 @@ export function CardItem() {
   const { data: post, loading: postLoading, error: postError } = useSelector((state: RootState) => state.cardItem);
 
   const { data: favorite } = useSelector((state: RootState) => state.favorites);
-  const { id } = useParams();
 
+  const { id } = useParams();
+  const navigate = useNavigate();
   const dispatch = useDispatch<AppDispatch>();
+
   useEffect(() => {
     if (id) {
       dispatch(fetchCommentsRequest({ id }));
@@ -67,6 +71,14 @@ export function CardItem() {
     setYourComment('');
   }
 
+  ///// delete post
+  function handleClickDeletePost() {
+    if (!post?.id) return;
+    dispatch(fetchDeletePostRequest({ id: String(post.id) }));
+    alert('Post deleted!');
+    navigate('/');
+  }
+
   return (
     <div className="card-item">
       <div className="card-item__container _container">
@@ -82,6 +94,9 @@ export function CardItem() {
                 {id && <LikeDislikeSwitcher id={id} />}
                 <div className="actions__icon" onClick={handleToggleFavorites}>
                   <FavoritesIcon fill={isFavorite ? 'red' : 'none'} />
+                </div>
+                <div className="actions__icon" onClick={handleClickDeletePost}>
+                  <DeletePost />
                 </div>
               </div>
             </div>
