@@ -15,11 +15,14 @@ export function Header() {
             <NavLink to="/users" className="header__item link">
               Users
             </NavLink>
+            <NavLink to="/create-post" className="header__item link">
+              New Post
+            </NavLink>
             <NavLink to="/favorites" className="header__item link">
               Favorites
             </NavLink>
-            <NavLink to="/create-post" className="header__item link">
-              New Post
+            <NavLink to="/personal-account" className="header__item link">
+              Account
             </NavLink>
           </nav>
           <div className="header__burger">

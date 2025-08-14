@@ -8,6 +8,7 @@ import { SignIn } from './pages/SignIn/SignIn';
 import { ProtectedRoute } from './components/ProtectedRoute/ProtectedRoute';
 import { LayoutSignIn } from './components/LayoutSignIn/LayoutSignIn';
 import { CreatePost } from './pages/CreatePost/CreatePost';
+import { PersonalAccount } from './pages/PersonalAccount/PersonalAccount';
 
 export const router = createBrowserRouter([
   {
@@ -50,6 +51,14 @@ export const router = createBrowserRouter([
         element: (
           <ProtectedRoute>
             <CreatePost />
+          </ProtectedRoute>
+        ),
+      },
+      {
+        path: '/personal-account',
+        element: (
+          <ProtectedRoute>
+            <PersonalAccount />
           </ProtectedRoute>
         ),
       },
