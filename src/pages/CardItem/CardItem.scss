@@ -10,10 +10,15 @@
     }
   }
 
-  &__subtitle {
-    font-size: 20px;
+  &__post-title {
+    font-size: $font-size-large-medium;
     color: $color-purple;
     margin-bottom: 10px;
+    text-transform: uppercase;
+
+    @include layout.breakpoint(sm) {
+      font-size: $font-size-base;
+    }
   }
 
   &__description {
@@ -53,5 +58,23 @@
 
   &__button {
     padding: 15px;
+  }
+}
+
+.comments {
+  &__title {
+    font-size: $font-size-base;
+    margin-bottom: 10px;
+  }
+
+  &__list {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  &__email {
+    font-size: 14px;
+    color: $color-purple;
   }
 }

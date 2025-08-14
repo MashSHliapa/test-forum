@@ -13,6 +13,12 @@ export interface IDataPostsListResponse {
   data: IPostsCard[];
 }
 
+export interface IDataPostResponse {
+  loading: boolean;
+  error: null | string;
+  data: IPostsCard;
+}
+
 export interface IUsersCard {
   userId: number;
   id: number;
@@ -45,6 +51,20 @@ export interface IProtectedRouteProps {
 
 export interface ICreatePostResponse {
   data: IPostsCard[];
+  loading: boolean;
+  error: string | null;
+}
+
+export interface IComments {
+  postId: number;
+  id: number;
+  name: string;
+  email: string;
+  body: string;
+}
+
+export interface IDataCommentsResponse {
+  data: IComments[];
   loading: boolean;
   error: string | null;
 }

@@ -1,4 +1,4 @@
-import { postsListEndpoint, usersEndpoint } from '../api';
+import { commentsEndpoint, postsListEndpoint, usersEndpoint } from '../api';
 import { client } from '../utils/client';
 
 export const requestPostsList = async () => {
@@ -8,6 +8,16 @@ export const requestPostsList = async () => {
 
 export const requestUsers = async () => {
   const { data } = await client.get(usersEndpoint);
+  return data;
+};
+
+export const requestComments = async (id: string) => {
+  const { data } = await client.get(postsListEndpoint + '/' + id + '/' + commentsEndpoint);
+  return data;
+};
+
+export const requestCardItem = async (id: string) => {
+  const { data } = await client.get(postsListEndpoint + '/' + id);
   return data;
 };
 

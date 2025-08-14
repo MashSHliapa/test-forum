@@ -3,7 +3,9 @@ import { configureStore } from '@reduxjs/toolkit';
 import { postsListReducer, watchFetchPostsList } from './postsListSlice';
 import { usersReducer, watchFetchUsers } from './usersSlice';
 import { favoritesReducer } from './favoritesSlice';
-import { createPostReducer, watchCreatePost } from './createPostSlice';
+import { createPostReducer, watchFetchCreatePost } from './createPostSlice';
+import { commentsReducer, watchFetchComments } from './commentsSlice';
+import { cardItemReducer, watchFetchCardItem } from './cardItemSlice';
 
 const sagaMiddleware = createSagaMiddleware();
 
@@ -13,13 +15,17 @@ export const store = configureStore({
     users: usersReducer,
     favorites: favoritesReducer,
     createPost: createPostReducer,
+    comments: commentsReducer,
+    cardItem: cardItemReducer,
   },
   middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(sagaMiddleware),
 });
 
 sagaMiddleware.run(watchFetchPostsList);
 sagaMiddleware.run(watchFetchUsers);
-sagaMiddleware.run(watchCreatePost);
+sagaMiddleware.run(watchFetchCreatePost);
+sagaMiddleware.run(watchFetchCardItem);
+sagaMiddleware.run(watchFetchComments);
 
 export type RootState = ReturnType<typeof store.getState>;
 export type AppDispatch = typeof store.dispatch;

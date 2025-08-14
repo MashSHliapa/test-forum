@@ -12,7 +12,7 @@ const createPostSlice = createSlice({
     error: null,
   } as ICreatePostResponse,
   reducers: {
-    fetchCreatePostRequest(state, action: PayloadAction<{ userId: number; title: string; description: string }>) {
+    fetchCreatePostRequest(state, _action: PayloadAction<{ userId: number; title: string; description: string }>) {
       state.loading = true;
       state.error = null;
     },
@@ -27,7 +27,7 @@ const createPostSlice = createSlice({
   },
 });
 
-function* handleCreatePost(action: ReduxPayloadAction<{ userId: number; title: string; description: string }>) {
+function* fetchCreatePostSaga(action: ReduxPayloadAction<{ userId: number; title: string; description: string }>) {
   try {
     const { userId, title, description } = action.payload;
     const data: ICreatePostResponse = yield call(requestCreatePost, { userId, title, body: description });
@@ -39,12 +39,12 @@ function* handleCreatePost(action: ReduxPayloadAction<{ userId: number; title: s
   }
 }
 
-export function* watchCreatePost() {
-  yield takeLatest(fetchCreatePostRequest.type, handleCreatePost);
+export function* watchFetchCreatePost() {
+  yield takeLatest(fetchCreatePostRequest.type, fetchCreatePostSaga);
 }
 
 export function* createPostSaga() {
-  yield all([watchCreatePost()]);
+  yield all([watchFetchCreatePost()]);
 }
 
 export const { fetchCreatePostRequest, fetchCreatePostSuccess, fetchCreatePostRejected } = createPostSlice.actions;

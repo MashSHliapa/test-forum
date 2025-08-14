@@ -1,8 +1,8 @@
 import React, { useEffect, useState, type ChangeEvent } from 'react';
 import { useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchPostsListRequest } from '../../redux/postsListSlice';
-import { fetchUsersRequest } from '../../redux/usersSlice';
+import { fetchCardItemRequest } from '../../redux/cardItemSlice';
+import { fetchCommentsRequest } from '../../redux/commentsSlice';
 import { addToFavorites, removeFromFavorites } from '../../redux/favoritesSlice';
 import { LikeDislikeSwitcher } from '../../components/LikeDislikeSwitcher/LikeDislikeSwitcher';
 import { FavoritesIcon } from '../../components/LikeDislikeSwitcher/icons/FavoritesIcon';
@@ -11,35 +11,39 @@ import type { IUsersCard } from '../../types/interfaces';
 import './CardItem.scss';
 
 export function CardItem() {
-  const [comment, setComment] = useState('');
-  const { data: users, loading: usersLoading, error: usersError } = useSelector((state: RootState) => state.users);
-  const { data: posts, loading: postsLoading, error: postsError } = useSelector((state: RootState) => state.postsList);
+  const [yourComment, setYourComment] = useState('');
+  const {
+    data: commentList,
+    loading: commentsLoading,
+    error: commentsError,
+  } = useSelector((state: RootState) => state.comments);
+
+  const { data: post, loading: postLoading, error: postError } = useSelector((state: RootState) => state.cardItem);
+
   const { data: favorite } = useSelector((state: RootState) => state.favorites);
   const { id } = useParams();
 
   const dispatch = useDispatch<AppDispatch>();
-
   useEffect(() => {
-    dispatch(fetchPostsListRequest());
-    dispatch(fetchUsersRequest());
-  }, [dispatch]);
+    if (id) {
+      dispatch(fetchCommentsRequest({ id }));
+      dispatch(fetchCardItemRequest({ id }));
+    }
+  }, [dispatch, id]);
 
-  if (usersLoading || postsLoading) {
+  if (commentsLoading || postLoading) {
     return <div className="loading">Loading...</div>;
   }
 
-  if (usersError) {
-    return <div className="text-danger">Users error: {usersError}</div>;
+  if (commentsError) {
+    return <div className="text-danger">Users error: {commentsError}</div>;
   }
 
-  if (postsError) {
-    return <div className="text-danger">Posts error: {postsError}</div>;
+  if (postError) {
+    return <div className="text-danger">Posts error: {postError}</div>;
   }
 
-  const post = posts ? posts.find((item) => item.id === Number(id)) : null;
-  const user = users ? users.find((item) => item.id === post?.userId) : null;
-
-  if (!post || !user) {
+  if (!post || !commentList) {
     return <div>Post not found</div>;
   }
 
@@ -55,12 +59,12 @@ export function CardItem() {
   }
 
   function handleInputForm(event: React.ChangeEvent<HTMLTextAreaElement>) {
-    setComment(event.target.value);
+    setYourComment(event.target.value);
   }
 
   function handleSubmitForm(event: ChangeEvent<HTMLFormElement>) {
     event.preventDefault();
-    setComment('');
+    setYourComment('');
   }
 
   return (
@@ -69,27 +73,8 @@ export function CardItem() {
         <div className="card-item__body body">
           <div className="card-item__title title">Post {post.id}</div>
           <div className="card-item__card card-body">
-            <div className="card-item__user user">
-              <h3 className="user__name">
-                <span className="label">author: </span>
-                {user.name}
-                <span className="user__username">({user.username})</span>
-              </h3>
-              <p className="user__website">
-                <span className="label">website: </span>
-                {user.website}
-              </p>
-              <p className="users__company">
-                <span className="label">company: </span>
-                {user.company.name}
-              </p>
-              <p className="users__email">
-                <span className="label">email: </span>
-                {user.email}
-              </p>
-            </div>
             <div className="card-item__post">
-              <h3 className="card-item__subtitle">{post.title}</h3>
+              <h3 className="card-item__post-title">{post.title}</h3>
               <p className="card-item__description">{post.body}</p>
             </div>
             <div className="card-item__actions actions">
@@ -99,19 +84,36 @@ export function CardItem() {
                   <FavoritesIcon fill={isFavorite ? 'red' : 'none'} />
                 </div>
               </div>
-              <div className="actions__comment">
-                <form action="#" className="actions__form" onSubmit={handleSubmitForm}>
-                  <textarea
-                    className="actions__textarea textarea"
-                    placeholder="Your comment"
-                    value={comment}
-                    onChange={handleInputForm}
-                  />
-                  <button type="submit" className="actions__button button">
-                    Send comment
-                  </button>
-                </form>
-              </div>
+            </div>
+
+            <div className="card-item__comments comments">
+              <h3 className="comments__title">Comments:</h3>
+              <ul className="comments__list">
+                {Array.isArray(commentList) && commentList.length > 0 ? (
+                  commentList.map((item) => (
+                    <li key={item.id} className="comments__item">
+                      <p className="comments__email">{item.email}</p>
+                      <h3 className="comments__body">{item.body}</h3>
+                    </li>
+                  ))
+                ) : (
+                  <li className="comments__item">Комментариев нет</li>
+                )}
+              </ul>
+            </div>
+
+            <div className="actions__your-comment">
+              <form action="#" className="actions__form" onSubmit={handleSubmitForm}>
+                <textarea
+                  className="actions__textarea textarea"
+                  placeholder="Your comment"
+                  value={yourComment}
+                  onChange={handleInputForm}
+                />
+                <button type="submit" className="actions__button button">
+                  Send comment
+                </button>
+              </form>
             </div>
           </div>
         </div>
